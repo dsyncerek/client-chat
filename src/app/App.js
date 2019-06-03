@@ -1,8 +1,9 @@
 import React from 'react';
+import MessageList from './components/MessageList/MessageList';
 
 const App = () => (
   <>
-    <h1>Hello World!</h1>
+    <MessageList />
   </>
 );
 
