@@ -31,4 +31,17 @@ export const GlobalStyled = createGlobalStyle(props => css`
     text-decoration: none;
     color: inherit;
   }
+  
+  input {
+    background: none;
+    font: inherit;
+    border: none;
+  }
+  
+  button {
+    background: none;
+    font: inherit;
+    border: none;
+    cursor: pointer;
+  }
 `);

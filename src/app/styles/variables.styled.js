@@ -8,9 +8,10 @@ export const breakpoints = {
 };
 
 export const colors = {
-  white: '#eee',
-  black: '#111',
+  white: '#fff',
+  black: '#000',
   red: '#ff4033',
+  gray: '#ddd',
 };
 
 export const theme = {

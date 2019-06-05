@@ -4,9 +4,6 @@ export const MessageStyled = styled.p(props => css`
   position: relative;
   display: inline-block;
   padding: 15px;
-  background: ${props.theme.colorPrimary};
-  color: ${props.theme.colorTextReversed};
-  border-radius: 0 5px 5px 5px;
   
   &::before {
     content: '';
@@ -15,12 +12,13 @@ export const MessageStyled = styled.p(props => css`
     width: 0;
     height: 0;
     border-style: solid;
-    
   }
   
   ${props.position === 'right' && css`
     align-self: flex-end;
     margin-right: 10px;
+    background: ${props.theme.colorPrimary};
+    color: ${props.theme.colorTextReversed};
     border-radius: 5px 0 5px 5px;
     
     &::before {
@@ -33,12 +31,14 @@ export const MessageStyled = styled.p(props => css`
   ${props.position === 'left' && css`
     align-self: flex-start;
     margin-left: 10px;
+    background: ${props.theme.colors.gray};
+    color: black;
     border-radius: 0 5px 5px 5px;
     
     &::before {
       left: -9px;
       border-width: 0 10px 10px 0;
-      border-color: transparent ${props.theme.colorPrimary} transparent transparent;
+      border-color: transparent ${props.theme.colors.gray} transparent transparent;
     }
   `}
 `);
