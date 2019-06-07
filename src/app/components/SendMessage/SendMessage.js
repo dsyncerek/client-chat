@@ -19,6 +19,7 @@ const SendMessage = ({ onMessage }) => {
     >
       <InputStyled
         placeholder="Enter message..."
+        required
         value={message}
         onChange={e => setMessage(e.target.value)}
       />

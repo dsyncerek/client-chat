@@ -1,9 +1,19 @@
-import { db as firebase } from './init';
+import firebase, { firestore } from './init';
 
 export default (session, content, owner) => {
-  firebase.ref(`messages_${session}`).push({
-    content,
-    owner,
-    date: new Date(),
-  })
+  firestore.collection(`messages`).doc(session).update({
+    messages: firebase.firestore.FieldValue.arrayUnion({
+      content,
+      owner,
+      date: new Date(),
+    }),
+  }).catch(() => {
+    firestore.collection(`messages`).doc(session).set({
+      messages: [{
+        content,
+        owner,
+        date: new Date(),
+      }],
+    });
+  });
 };

@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { db as firebase } from './init';
+import { firestore } from './init';
 
 export default session => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    firebase.ref(`messages_${session}`).on('value', snapshot => {
-      if (snapshot.val()) {
-        setMessages(Object.values(snapshot.val()));
-      }
+    const unsubscribe = firestore.collection('messages').doc(session).onSnapshot(snapshot => {
+      setMessages(snapshot.data().messages);
     });
+
+    return () => unsubscribe();
   }, [session]);
 
   return messages;
