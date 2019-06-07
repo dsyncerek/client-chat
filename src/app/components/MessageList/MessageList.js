@@ -15,9 +15,9 @@ const MessageList = ({ messages = [], autoScroll = true }) => {
 
   return (
     <MessageListStyled ref={ref}>
-      {messages.map(({ content, position }) => (
+      {messages.map(({ content, position, date }) => (
         <Message
-          key={content}
+          key={date}
           content={content}
           position={position}
         />
