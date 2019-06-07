@@ -7,6 +7,7 @@ export const SendMessageStyled = styled.form(props => css`
 
 export const InputStyled = styled.input(props => css`
   flex-grow: 1;
+  width: 0;
   padding: 20px;
   border-top: 2px solid red;
 `);
