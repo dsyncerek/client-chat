@@ -6,7 +6,9 @@ export default session => {
 
   useEffect(() => {
     const unsubscribe = firestore.collection('messages').doc(session).onSnapshot(snapshot => {
-      setMessages(snapshot.data().messages);
+      if (snapshot.data()) {
+        setMessages(snapshot.data().messages);
+      }
     });
 
     return () => unsubscribe();
