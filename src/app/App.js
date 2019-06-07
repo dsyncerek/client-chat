@@ -1,44 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import SessionList from './components/SessionList/SessionList';
-import Chat from './components/Chat/Chat';
+import HostChat from './pages/HostChat';
+import Sessions from './pages/Sessions';
+import ClientChat from './pages/ClientChat';
 
-const sessions = [
-  'test',
-  'dasdsada',
-];
-
-const messages = [
-  {
-    content: 'Hello!',
-    position: 'left',
-  },
-  {
-    content: 'Hi!',
-    position: 'right',
-  },
-];
-
-const onMessage = message => console.log(message);
-
-const App = () => (
-  <Router>
-    <Route
-      exact
-      path="/host/:clientId"
-      render={() => <Chat messages={messages} onMessage={onMessage} />}
-    />
-    <Route
-      exact
-      path="/host"
-      render={() => <SessionList sessions={sessions} />}
-    />
-    <Route
-      exact
-      path="/client"
-      render={() => <Chat messages={messages} onMessage={onMessage} />}
-    />
-  </Router>
-);
+const App = () => {
+  return (
+    <Router>
+      <Route exact path="/host/:session" component={HostChat} />
+      <Route exact path="/host" component={Sessions} />
+      <Route exact path="/client" component={ClientChat} />
+    </Router>
+  );
+};
 
 export default App;
