@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SessionListItemStyled, SessionListStyled } from './SessionList.styled';
+import PropTypes from 'prop-types';
 
 const SessionList = ({ sessions = [] }) => (
   <SessionListStyled>
@@ -14,5 +15,9 @@ const SessionList = ({ sessions = [] }) => (
     ))}
   </SessionListStyled>
 );
+
+SessionList.propTypes = {
+  sessions: PropTypes.array,
+};
 
 export default SessionList;

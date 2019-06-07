@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Message from '../Message/Message';
 import { MessageListStyled } from './MessageList.styled';
+import PropTypes from 'prop-types';
 
 const MessageList = ({ messages = [], autoScroll = true }) => {
   const ref = useRef(null);
@@ -24,5 +25,11 @@ const MessageList = ({ messages = [], autoScroll = true }) => {
     </MessageListStyled>
   );
 };
+
+MessageList.propTypes = {
+  messages: PropTypes.array,
+  autoScroll: PropTypes.bool,
+};
+
 
 export default MessageList;

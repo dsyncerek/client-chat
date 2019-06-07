@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ButtonStyled, InputStyled, SendMessageStyled } from './SendMessage.styled';
+import PropTypes from 'prop-types';
 
 const messageDefaultValue = "";
 
@@ -26,6 +27,10 @@ const SendMessage = ({ onMessage }) => {
       </ButtonStyled>
     </SendMessageStyled>
   );
+};
+
+SendMessage.propTypes = {
+  onMessage: PropTypes.func.isRequired,
 };
 
 export default SendMessage;

@@ -10,6 +10,7 @@ const Message = ({ content, position = 'left' }) => (
 
 Message.propTypes = {
   content: PropTypes.string.isRequired,
+  position: PropTypes.oneOf(['left', 'right']),
 };
 
 export default Message;
