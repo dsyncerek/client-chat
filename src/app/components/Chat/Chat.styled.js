@@ -6,6 +6,7 @@ export const ChatStyled = styled.div(props => css`
   position: relative;
   height: 100vh;
   padding-bottom: 62px;
+  border: 2px solid ${props.theme.colorPrimary};
   
   ${MessageListStyled} {
     position: relative;
