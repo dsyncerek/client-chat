@@ -6,20 +6,22 @@ const messageDefaultValue = "";
 const SendMessage = ({ onMessage }) => {
   const [message, setMessage] = useState(messageDefaultValue);
 
-  const onButtonClick = () => {
+  const onButtonClick = e => {
+    e.preventDefault();
     onMessage(message);
     setMessage(messageDefaultValue);
   };
 
   return (
-    <SendMessageStyled>
+    <SendMessageStyled
+      onSubmit={onButtonClick}
+    >
       <InputStyled
+        placeholder="Enter message..."
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <ButtonStyled
-        onClick={onButtonClick}
-      >
+      <ButtonStyled>
         Send
       </ButtonStyled>
     </SendMessageStyled>
