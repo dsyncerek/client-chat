@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import Message from '../Message/Message';
 import { MessageListStyled } from './MessageList.styled';
-import PropTypes from 'prop-types';
 
 const MessageList = ({ messages = [], autoScroll = true }) => {
   const ref = useRef(null);

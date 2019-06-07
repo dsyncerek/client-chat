@@ -1,9 +1,9 @@
 import React from 'react';
-import useMessages from '../firebase/useMessages';
 import Chat from '../components/Chat/Chat';
-import mapMessagePosition from '../utils/mapMessagePosition';
-import pushMessage from '../firebase/pushMessage';
 import ChatGrid from '../components/ChatGrid/ChatGrid';
+import pushMessage from '../firebase/pushMessage';
+import useMessages from '../firebase/useMessages';
+import mapMessagePosition from '../utils/mapMessagePosition';
 
 const HostChat = () => {
   const messages = useMessages();

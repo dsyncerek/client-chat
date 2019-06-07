@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import MessageList from '../MessageList/MessageList';
 import SendMessage from '../SendMessage/SendMessage';
 import { ChatStyled } from './Chat.styled';
-import PropTypes from 'prop-types';
 
 const Chat = ({ messages = [], onMessage }) => (
   <ChatStyled>

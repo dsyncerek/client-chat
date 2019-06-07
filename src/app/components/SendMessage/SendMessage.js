@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { ButtonStyled, InputStyled, SendMessageStyled } from './SendMessage.styled';
-import PropTypes from 'prop-types';
 
 const messageDefaultValue = "";
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import HostChat from './pages/HostChat';
 import ClientChat from './pages/ClientChat';
+import HostChat from './pages/HostChat';
 
 const App = () => {
   return (

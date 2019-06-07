@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Chat from '../components/Chat/Chat';
+import SessionContext from '../context/SessionContext';
+import pushMessage from '../firebase/pushMessage';
 import useMessages from '../firebase/useMessages';
 import mapMessagePosition from '../utils/mapMessagePosition';
-import pushMessage from '../firebase/pushMessage';
-import SessionContext from '../context/SessionContext';
 
 const ClientChat = () => {
   const session = useContext(SessionContext);

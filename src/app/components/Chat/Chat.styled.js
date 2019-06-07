@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { SendMessageStyled } from '../SendMessage/SendMessage.styled';
 import { MessageListStyled } from '../MessageList/MessageList.styled';
+import { SendMessageStyled } from '../SendMessage/SendMessage.styled';
 
 export const ChatStyled = styled.div(props => css`
   position: relative;

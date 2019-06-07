@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { ChatGridStyled } from './ChatGrid.styled';
-import PropTypes from 'prop-types';
 
 const ChatGrid = ({ children }) => (
   <ChatGridStyled>

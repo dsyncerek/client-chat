@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app/App';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './app/styles/variables.styled';
-import { GlobalStyled } from './app/styles/global.styled';
+import App from './app/App';
 import { SessionContextProvider } from './app/context/SessionContext';
+import { GlobalStyled } from './app/styles/global.styled';
+import { theme } from './app/styles/variables.styled';
 
 const Root = () => (
   <SessionContextProvider>
