@@ -3,7 +3,7 @@ import MessageList from '../MessageList/MessageList';
 import SendMessage from '../SendMessage/SendMessage';
 import { ChatStyled } from './Chat.styled';
 
-const Chat = ({ messages, onMessage }) => (
+const Chat = ({ messages = [], onMessage }) => (
   <ChatStyled>
     <MessageList messages={messages} />
     <SendMessage onMessage={onMessage} />
