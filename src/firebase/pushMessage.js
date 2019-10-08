@@ -9,6 +9,7 @@ export default (session, content, owner) => {
     date: new Date(),
   };
 
-  ref.update({ messages: firebase.firestore.FieldValue.arrayUnion(message) })
+  ref
+    .update({ messages: firebase.firestore.FieldValue.arrayUnion(message) })
     .catch(() => ref.set({ messages: [message] }));
 };

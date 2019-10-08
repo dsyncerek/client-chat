@@ -16,11 +16,7 @@ const MessageList = ({ messages = [], autoScroll = true }) => {
   return (
     <MessageListStyled ref={ref}>
       {messages.map(({ content, position, date }) => (
-        <Message
-          key={date}
-          content={content}
-          position={position}
-        />
+        <Message key={date} content={content} position={position} />
       ))}
     </MessageListStyled>
   );
@@ -30,6 +26,5 @@ MessageList.propTypes = {
   messages: PropTypes.array,
   autoScroll: PropTypes.bool,
 };
-
 
 export default MessageList;
