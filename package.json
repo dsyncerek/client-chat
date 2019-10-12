@@ -7,7 +7,8 @@
     "format": "prettier src/**/*.js --write",
     "lint": "npm run lint:scripts && npm run lint:styles",
     "lint:scripts": "eslint src/**/*.js --fix",
-    "lint:styles": "stylelint src/**/*.js --fix"
+    "lint:styles": "stylelint src/**/*.js --fix",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "firebase": "^7.2.0",
