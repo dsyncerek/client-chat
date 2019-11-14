@@ -1,36 +1,30 @@
 {
-  "name": "firebase-chat-app",
+  "name": "client-host-chat",
   "version": "1.0.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "format": "prettier src/**/*.js --write",
-    "lint": "npm run lint:scripts && npm run lint:styles",
-    "lint:scripts": "eslint src/**/*.js --fix",
-    "lint:styles": "stylelint src/**/*.js --fix",
+    "format": "prettier src/**/*.{ts,tsx} --write",
+    "lint": "eslint src/**/*.{ts,tsx} --fix",
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "firebase": "^7.3.0",
-    "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.2.0",
-    "styled-components": "^4.4.1",
-    "styled-components-breakpoint": "^2.1.1",
-    "styled-reset": "^4.0.6"
+    "react-scripts": "^3.2.0"
   },
   "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-router-dom": "^5.1.2",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.3",
     "prettier": "^1.19.1",
-    "stylelint": "^11.1.1",
-    "stylelint-config-prettier": "^6.0.0",
-    "stylelint-config-standard": "^19.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.8.0"
+    "typescript": "~3.7.2"
   }
 }
