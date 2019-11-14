@@ -1,6 +1,7 @@
 import { app, firestore, initializeApp } from 'firebase/app';
 import 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import Dictionary from '../models/Dictionary';
 import Message, { MessageOwnerEnum } from '../models/Message';
 import config from './config';
 
@@ -44,12 +45,12 @@ class Firebase {
     return messages;
   }
 
-  public useAllSessionsMessages(): { [key: string]: Message[] } {
-    const [messages, setMessages] = useState<{ [key: string]: Message[] }>({});
+  public useAllSessionsMessages(): Dictionary<Message[]> {
+    const [messages, setMessages] = useState<Dictionary<Message[]>>({});
 
     useEffect(() => {
       const unsubscribe = this.messagesCollection.onSnapshot(querySnapshot => {
-        const newMessages: { [key: string]: Message[] } = {};
+        const newMessages: Dictionary<Message[]> = {};
 
         querySnapshot.forEach(snapshot => {
           const data = snapshot.data();
