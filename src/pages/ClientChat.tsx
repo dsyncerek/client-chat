@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Chat from '../components/Chat';
 import FirebaseContext from '../firebase/FirebaseContext';
-import { MessageOwnerEnum } from '../models/Message';
+import MessageOwnerEnum from '../models/MessageOwnerEnum';
 import SessionContext from '../session/SessionContext';
 
 const ClientChat = () => {

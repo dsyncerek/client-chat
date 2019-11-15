@@ -1,12 +1,10 @@
 import { firestore } from 'firebase';
+import MessageOwnerEnum from './MessageOwnerEnum';
 
-export enum MessageOwnerEnum {
-  Client = 'client',
-  Host = 'host',
-}
-
-export default interface Message {
+interface Message {
   content: string;
   owner: MessageOwnerEnum;
   date: firestore.Timestamp;
 }
+
+export default Message;

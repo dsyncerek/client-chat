@@ -1,6 +1,7 @@
 import { firestore } from 'firebase';
 import React, { FC, useEffect, useRef } from 'react';
-import Message, { MessageOwnerEnum } from '../models/Message';
+import Message from '../models/Message';
+import MessageOwnerEnum from '../models/MessageOwnerEnum';
 
 type MessageListProps = {
   messages?: Message[];

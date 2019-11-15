@@ -2,7 +2,8 @@ import { app, firestore, initializeApp } from 'firebase/app';
 import 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import Dictionary from '../models/Dictionary';
-import Message, { MessageOwnerEnum } from '../models/Message';
+import Message from '../models/Message';
+import MessageOwnerEnum from '../models/MessageOwnerEnum';
 import config from './config';
 
 class Firebase {
