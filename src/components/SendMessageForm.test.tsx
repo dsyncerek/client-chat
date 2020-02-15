@@ -7,7 +7,7 @@ describe('SendMessageForm', () => {
     shallow(<SendMessageForm onSend={jest.fn()} />);
   });
 
-  it('should have form with input', () => {
+  it('should contain form with input', () => {
     const wrapper = shallow(<SendMessageForm onSend={jest.fn()} />);
 
     expect(wrapper.find('form')).toHaveLength(1);
