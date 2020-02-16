@@ -1,6 +1,6 @@
 class Session {
+  public static readonly storageKey: string = 'session';
   private readonly storage: Storage = localStorage;
-  private readonly storageKey: string = 'session';
 
   getSession(): string {
     return this.getSessionFromStorage() || this.createSession();
@@ -13,11 +13,11 @@ class Session {
   }
 
   private saveSessionToStorage(session: string): void {
-    this.storage.setItem(this.storageKey, session);
+    this.storage.setItem(Session.storageKey, session);
   }
 
   private getSessionFromStorage(): string | null {
-    return this.storage.getItem(this.storageKey);
+    return this.storage.getItem(Session.storageKey);
   }
 
   private getRandomString(): string {
