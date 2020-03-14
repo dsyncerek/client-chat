@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import ClientChat from './pages/ClientChat';
-import HostChat from './pages/HostChat';
+import { ClientChat } from './pages/ClientChat';
+import { HostChat } from './pages/HostChat';
 
-const App: FC = () => (
+export const App: FC = () => (
   <Router>
     <Switch>
       <Route exact path="/host" component={HostChat} />
@@ -12,5 +12,3 @@ const App: FC = () => (
     </Switch>
   </Router>
 );
-
-export default App;

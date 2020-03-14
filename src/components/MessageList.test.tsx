@@ -1,9 +1,9 @@
 import { shallow } from 'enzyme';
 import { firestore } from 'firebase';
 import React from 'react';
-import Message from '../models/Message';
-import MessageOwnerEnum from '../models/MessageOwnerEnum';
-import MessageList from './MessageList';
+import { Message } from '../models/Message';
+import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
+import { MessageList } from './MessageList';
 
 describe('MessageList', () => {
   const MESSAGES: Message[] = [

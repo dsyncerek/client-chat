@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import Chat from '../components/Chat';
-import FirebaseContext from '../firebase/FirebaseContext';
-import MessageOwnerEnum from '../models/MessageOwnerEnum';
-import SessionContext from '../session/SessionContext';
+import React from 'react';
+import { Chat } from '../components/Chat';
+import { useFirebase } from '../firebase/FirebaseContext';
+import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
+import { useSession } from '../session/SessionContext';
 
-const ClientChat = () => {
-  const session = useContext(SessionContext);
-  const firebase = useContext(FirebaseContext);
+export const ClientChat = () => {
+  const session = useSession();
+  const firebase = useFirebase();
   const messages = firebase.useSessionMessages(session);
 
   return (
@@ -15,5 +15,3 @@ const ClientChat = () => {
     </div>
   );
 };
-
-export default ClientChat;

@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import Chat from '../components/Chat';
-import FirebaseContext from '../firebase/FirebaseContext';
-import MessageOwnerEnum from '../models/MessageOwnerEnum';
+import React from 'react';
+import { Chat } from '../components/Chat';
+import { useFirebase } from '../firebase/FirebaseContext';
+import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
 
-const HostChat = () => {
-  const firebase = useContext(FirebaseContext);
+export const HostChat = () => {
+  const firebase = useFirebase();
   const messages = firebase.useAllSessionsMessages();
 
   return (
@@ -22,5 +22,3 @@ const HostChat = () => {
     </div>
   );
 };
-
-export default HostChat;

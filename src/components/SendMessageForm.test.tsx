@@ -1,6 +1,6 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import SendMessageForm from './SendMessageForm';
+import { SendMessageForm } from './SendMessageForm';
 
 describe('SendMessageForm', () => {
   it('renders without crashing', () => {

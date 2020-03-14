@@ -1,6 +1,5 @@
-import { createContext } from 'react';
-import Session from './Session';
+import { createContext, useContext } from 'react';
+import { Session } from './Session';
 
-const SessionContext = createContext<string>(new Session().getSession());
-
-export default SessionContext;
+export const SessionContext = createContext<string>(new Session().getSession());
+export const useSession = () => useContext(SessionContext);

@@ -1,4 +1,4 @@
-class Session {
+export class Session {
   public static readonly storageKey: string = 'session';
   private readonly storage: Storage = localStorage;
 
@@ -26,5 +26,3 @@ class Session {
       .substr(2);
   }
 }
-
-export default Session;

@@ -5,7 +5,7 @@ type SendMessageFormProps = {
   defaultMessage?: string;
 };
 
-const SendMessageForm: FC<SendMessageFormProps> = ({ onSend, defaultMessage = '' }) => {
+export const SendMessageForm: FC<SendMessageFormProps> = ({ onSend, defaultMessage = '' }) => {
   const [message, setMessage] = useState(defaultMessage);
 
   const onFormSubmit = (event: FormEvent) => {
@@ -34,5 +34,3 @@ const SendMessageForm: FC<SendMessageFormProps> = ({ onSend, defaultMessage = ''
     </form>
   );
 };
-
-export default SendMessageForm;

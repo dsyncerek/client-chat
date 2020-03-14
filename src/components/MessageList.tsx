@@ -1,14 +1,14 @@
 import { firestore } from 'firebase';
 import React, { FC, useEffect, useRef } from 'react';
-import Message from '../models/Message';
-import MessageOwnerEnum from '../models/MessageOwnerEnum';
+import { Message } from '../models/Message';
+import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
 
 type MessageListProps = {
   messages?: Message[];
   autoScroll?: boolean;
 };
 
-const MessageList: FC<MessageListProps> = ({ messages = [], autoScroll = true }) => {
+export const MessageList: FC<MessageListProps> = ({ messages = [], autoScroll = true }) => {
   const ref = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
@@ -36,5 +36,3 @@ const MessageList: FC<MessageListProps> = ({ messages = [], autoScroll = true })
     </div>
   );
 };
-
-export default MessageList;

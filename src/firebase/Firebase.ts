@@ -1,12 +1,12 @@
 import { app, firestore, initializeApp } from 'firebase/app';
 import 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import Dictionary from '../models/Dictionary';
-import Message from '../models/Message';
-import MessageOwnerEnum from '../models/MessageOwnerEnum';
-import config from './config';
+import { Dictionary } from '../models/Dictionary';
+import { Message } from '../models/Message';
+import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
+import { config } from './config';
 
-class Firebase {
+export class Firebase {
   private readonly app: app.App;
   private readonly firestore: firestore.Firestore;
   private readonly messagesCollection: firestore.CollectionReference;
@@ -70,5 +70,3 @@ class Firebase {
     return messages;
   }
 }
-
-export default Firebase;
