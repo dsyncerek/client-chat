@@ -21,8 +21,6 @@ export class Session {
   }
 
   private getRandomString(): string {
-    return Math.random()
-      .toString(16)
-      .substr(2);
+    return Math.random().toString(16).substr(2);
   }
 }
