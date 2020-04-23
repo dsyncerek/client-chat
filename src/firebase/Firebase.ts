@@ -6,15 +6,19 @@ import { Message } from '../models/Message';
 import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
 import { config } from './config';
 
+export interface DocumentData {
+  messages: Message[];
+}
+
 export class Firebase {
   private readonly app: app.App;
   private readonly firestore: firestore.Firestore;
-  private readonly messagesCollection: firestore.CollectionReference;
+  private readonly messagesCollection: firestore.CollectionReference<DocumentData>;
 
   constructor() {
     this.app = initializeApp(config);
     this.firestore = firestore(this.app);
-    this.messagesCollection = this.firestore.collection(`messages`);
+    this.messagesCollection = this.firestore.collection(`messages`) as firestore.CollectionReference<DocumentData>;
   }
 
   public addMessage(session: string, content: string, owner: MessageOwnerEnum): void {
@@ -36,7 +40,7 @@ export class Firebase {
         const data = snapshot.data();
 
         if (data) {
-          setMessages(data.messages);
+          setMessages(this.sortMessages(data.messages));
         }
       });
 
@@ -57,7 +61,7 @@ export class Firebase {
           const data = snapshot.data();
 
           if (data) {
-            newMessages[snapshot.id] = data.messages;
+            newMessages[snapshot.id] = this.sortMessages(data.messages);
           }
         });
 
@@ -68,5 +72,9 @@ export class Firebase {
     }, []);
 
     return messages;
+  }
+
+  private sortMessages(messages: Message[]): Message[] {
+    return messages.sort((m1, m2) => m1.date.seconds - m2.date.seconds);
   }
 }
