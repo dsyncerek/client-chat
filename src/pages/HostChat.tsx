@@ -1,19 +1,26 @@
 import React from 'react';
 import { Chat } from '../components/Chat';
+import { Loader } from '../components/Loader';
 import { useFirebase } from '../firebase/FirebaseContext';
 import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
 
 export const HostChat = () => {
   const firebase = useFirebase();
-  const messages = firebase.useAllSessionsMessages();
-  const onSend = (session: string, content: string) => firebase.addMessage(session, content, MessageOwnerEnum.Host);
+  const [guests, loaded] = firebase.useAllChatGuests();
+
+  if (!loaded) {
+    return <Loader />;
+  }
 
   return (
     <div className="container my-4">
       <div className="row">
-        {Object.keys(messages).map(session => (
-          <div key={session} className="col-md-6 my-4">
-            <Chat messages={messages[session]} onSend={content => onSend(session, content)} />
+        {guests.map(guest => (
+          <div key={guest.session} className="col-md-6 my-4">
+            <Chat
+              guest={guest}
+              onSend={content => firebase.addMessage(guest.session, content, MessageOwnerEnum.Host)}
+            />
           </div>
         ))}
       </div>

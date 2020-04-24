@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
-import { Message } from '../models/Message';
+import { Guest } from '../models/Guest';
 import { MessageList } from './MessageList';
 import { SendMessageForm } from './SendMessageForm';
 
 type ChatProps = {
-  messages?: Message[];
+  guest: Guest;
   onSend: (message: string) => void;
 };
 
-export const Chat: FC<ChatProps> = ({ messages = [], onSend }) => (
+export const Chat: FC<ChatProps> = ({ guest, onSend }) => (
   <>
-    <MessageList messages={messages} />
+    <div className="text-center mb-1">{guest.name}</div>
+    <MessageList messages={guest.messages} />
 
     <div className="mt-3">
       <SendMessageForm onSend={onSend} />

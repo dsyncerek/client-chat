@@ -1,77 +1,97 @@
 import { app, firestore, initializeApp } from 'firebase/app';
 import 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { Dictionary } from '../models/Dictionary';
+import { Guest } from '../models/Guest';
 import { Message } from '../models/Message';
 import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
 import { config } from './config';
 
-export interface DocumentData {
+export interface ChatGuestDocumentData {
+  name: string;
   messages: Message[];
 }
 
 export class Firebase {
   private readonly app: app.App;
   private readonly firestore: firestore.Firestore;
-  private readonly messagesCollection: firestore.CollectionReference<DocumentData>;
+  private readonly guestsCollection: firestore.CollectionReference<ChatGuestDocumentData>;
+  private readonly storage: Storage = localStorage;
+  public static readonly sessionStorageKey: string = 'session';
 
   constructor() {
     this.app = initializeApp(config);
     this.firestore = firestore(this.app);
-    this.messagesCollection = this.firestore.collection(`messages`) as firestore.CollectionReference<DocumentData>;
+    this.guestsCollection = this.firestore.collection(`chatGuests`) as firestore.CollectionReference<
+      ChatGuestDocumentData
+    >;
+  }
+
+  public async initChatGuest(name: string): Promise<string> {
+    const { id } = await this.guestsCollection.add({ name, messages: [] });
+    this.storage.setItem(Firebase.sessionStorageKey, id);
+    return id;
   }
 
   public addMessage(session: string, content: string, owner: MessageOwnerEnum): void {
     const message: Message = { content, owner, date: firestore.Timestamp.now() };
-    const document = this.messagesCollection.doc(session);
+    const document = this.guestsCollection.doc(session);
 
-    document
-      .update({ messages: firestore.FieldValue.arrayUnion(message) })
-      .catch(() => document.set({ messages: [message] }));
+    document.update({ messages: firestore.FieldValue.arrayUnion(message) });
   }
 
-  public useSessionMessages(session: string): Message[] {
-    const [messages, setMessages] = useState<Message[]>([]);
+  public useSession() {
+    const fromStorage = this.storage.getItem(Firebase.sessionStorageKey);
+    return useState<string | null>(fromStorage);
+  }
+
+  public useGuest(session: string | null): [Guest | null, boolean] {
+    const [guest, setGuest] = useState<Guest | null>(null);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-      const document = this.messagesCollection.doc(session);
+      if (session) {
+        const unsubscribe = this.guestsCollection.doc(session).onSnapshot(snapshot => {
+          const data = snapshot.data();
 
-      const unsubscribe = document.onSnapshot(snapshot => {
-        const data = snapshot.data();
+          if (data) {
+            setGuest({ ...data, session, messages: this.sortMessages(data.messages) });
+            setLoaded(true);
+          } else {
+            setLoaded(true);
+          }
+        });
 
-        if (data) {
-          setMessages(this.sortMessages(data.messages));
-        }
-      });
-
-      return () => unsubscribe();
+        return () => unsubscribe();
+      }
     }, [session]);
 
-    return messages;
+    return [guest, loaded];
   }
 
-  public useAllSessionsMessages(): Dictionary<Message[]> {
-    const [messages, setMessages] = useState<Dictionary<Message[]>>({});
+  public useAllChatGuests(): [Guest[], boolean] {
+    const [guests, setGuests] = useState<Guest[]>([]);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-      const unsubscribe = this.messagesCollection.onSnapshot(querySnapshot => {
-        const newMessages: Dictionary<Message[]> = {};
+      const unsubscribe = this.guestsCollection.onSnapshot(querySnapshot => {
+        const newGuests: Guest[] = [];
 
         querySnapshot.forEach(snapshot => {
           const data = snapshot.data();
 
           if (data) {
-            newMessages[snapshot.id] = this.sortMessages(data.messages);
+            newGuests.push({ ...data, session: snapshot.id, messages: this.sortMessages(data.messages) });
           }
         });
 
-        setMessages(newMessages);
+        setGuests(newGuests);
+        setLoaded(true);
       });
 
       return () => unsubscribe();
     }, []);
 
-    return messages;
+    return [guests, loaded];
   }
 
   private sortMessages(messages: Message[]): Message[] {
