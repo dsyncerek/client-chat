@@ -28,7 +28,6 @@ export class Firebase {
 
   public async initChatGuest(name: string): Promise<string> {
     const { id } = await this.guestsCollection.add({ name, messages: [] });
-    this.storage.setItem(Firebase.sessionStorageKey, id);
     return id;
   }
 
@@ -39,9 +38,17 @@ export class Firebase {
     document.update({ messages: firestore.FieldValue.arrayUnion(message) });
   }
 
-  public useSession() {
+  public useSession(): [string | null, (session: string) => void] {
     const fromStorage = this.storage.getItem(Firebase.sessionStorageKey);
-    return useState<string | null>(fromStorage);
+    const [session, setSession] = useState<string | null>(fromStorage);
+
+    return [
+      session,
+      (session: string) => {
+        setSession(session);
+        this.storage.setItem(Firebase.sessionStorageKey, session);
+      },
+    ];
   }
 
   public useGuest(session: string | null): [Guest | null, boolean] {
