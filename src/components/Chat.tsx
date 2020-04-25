@@ -10,7 +10,7 @@ type ChatProps = {
 
 export const Chat: FC<ChatProps> = ({ guest, onSend }) => (
   <>
-    <div className="text-center mb-1">{guest.name}</div>
+    <div className="badge badge-primary mb-1">{guest.name}</div>
     <MessageList messages={guest.messages} />
 
     <div className="mt-3">
