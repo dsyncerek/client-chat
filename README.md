@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4961b734-bdcc-4814-bd69-9f2a98f5bc23/deploy-status)](https://app.netlify.com/sites/fervent-babbage-8c066a/deploys)
+[![Actions Status](https://github.com/dsyncerek/client-host-chat/workflows/MainCI/badge.svg)](https://github.com/dsyncerek/client-host-chat/actions)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dsyncerek/client-host-chat)](https://dependabot.com)
 
 # Client-Host Chat
