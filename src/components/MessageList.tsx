@@ -1,4 +1,4 @@
-import { firestore } from 'firebase';
+import firebase from 'firebase/app';
 import React, { FC, useEffect, useRef } from 'react';
 import { Message } from '../models/Message';
 import { MessageOwnerEnum } from '../models/MessageOwnerEnum';
@@ -17,7 +17,7 @@ export const MessageList: FC<MessageListProps> = ({ messages = [], autoScroll = 
     }
   }, [messages, autoScroll]);
 
-  const getDateString = (date: firestore.Timestamp): string => {
+  const getDateString = (date: firebase.firestore.Timestamp): string => {
     return date.toDate().toLocaleString();
   };
 

@@ -1,8 +1,8 @@
-import { firestore } from 'firebase';
+import firebase from 'firebase/app';
 import { MessageOwnerEnum } from './MessageOwnerEnum';
 
 export interface Message {
   content: string;
   owner: MessageOwnerEnum;
-  date: firestore.Timestamp;
+  date: firebase.firestore.Timestamp;
 }

@@ -1,4 +1,5 @@
-import { app, firestore, initializeApp } from 'firebase/app';
+/* eslint-disable react-hooks/rules-of-hooks */
+import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Guest } from '../models/Guest';
@@ -12,16 +13,16 @@ export interface ChatGuestDocumentData {
 }
 
 export class Firebase {
-  private readonly app: app.App;
-  private readonly firestore: firestore.Firestore;
-  private readonly guestsCollection: firestore.CollectionReference<ChatGuestDocumentData>;
+  private readonly app: firebase.app.App;
+  private readonly firestore: firebase.firestore.Firestore;
+  private readonly guestsCollection: firebase.firestore.CollectionReference<ChatGuestDocumentData>;
   private readonly storage: Storage = localStorage;
   public static readonly sessionStorageKey: string = 'session';
 
   constructor() {
-    this.app = initializeApp(config);
-    this.firestore = firestore(this.app);
-    this.guestsCollection = this.firestore.collection(`chatGuests`) as firestore.CollectionReference<
+    this.app = firebase.initializeApp(config);
+    this.firestore = firebase.firestore(this.app);
+    this.guestsCollection = this.firestore.collection(`chatGuests`) as firebase.firestore.CollectionReference<
       ChatGuestDocumentData
     >;
   }
@@ -32,10 +33,10 @@ export class Firebase {
   }
 
   public addMessage(session: string, content: string, owner: MessageOwnerEnum): void {
-    const message: Message = { content, owner, date: firestore.Timestamp.now() };
+    const message: Message = { content, owner, date: firebase.firestore.Timestamp.now() };
     const document = this.guestsCollection.doc(session);
 
-    document.update({ messages: firestore.FieldValue.arrayUnion(message) });
+    document.update({ messages: firebase.firestore.FieldValue.arrayUnion(message) });
   }
 
   public useSession(): [string | null, (session: string) => void] {
