@@ -21,7 +21,7 @@
     "react-scripts": "^4.0.3"
   },
   "devDependencies": {
-    "@types/enzyme": "^3.10.9",
+    "@types/enzyme": "^3.10.12",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^27.0.1",
     "@types/react": "^17.0.19",
